@@ -89,6 +89,60 @@ function coinspot(key, secret) {
 		var data = {cointype:cointype, amount:amount, rate: rate}
 		request('/api/my/sell', data, callback);
 	}
+
+	    // New endpoints
+        self.cancelBuy = function(id, callback) {
+            request('/api/my/buy/cancel', { id: id }, callback);
+        };
+
+        self.cancelSell = function(id, callback) {
+            request('/api/my/sell/cancel', { id: id }, callback);
+        };
+
+        self.orderHistory = function(cointype, callback) {
+            request('/api/orders/history', { cointype: cointype }, callback);
+        };
+
+        self.status = function(callback) {
+            request('/api/status', {}, callback);
+        };
+
+        self.completedOrders = function(cointype, markettype, callback) {
+            var path = '/api/orders/completed/' + cointype;
+            if (markettype) {
+                path += '/' + markettype;
+            }
+            request(path, {}, callback);
+        };
+
+        self.latestBuyPrice = function(cointype, markettype, callback) {
+            var path = '/pubapi/v2/buyprice/' + cointype + '/' + markettype;
+            request(path, {}, callback);
+        };
+
+        self.latestSellPrice = function(cointype, markettype, callback) {
+            var path = '/pubapi/v2/sellprice/' + cointype + '/' + markettype;
+            request(path, {}, callback);
+        };
+
+        self.openOrdersByCoin = function(cointype, callback) {
+            var path = '/pubapi/v2/orders/open/' + cointype;
+            request(path, {}, callback);
+        };
+
+        self.openOrdersByCoinMarket = function(cointype, markettype, callback) {
+            var path = '/pubapi/v2/orders/open/' + cointype + '/' + markettype;
+            request(path, {}, callback);
+        };
+
+        self.listAffiliatePayments = function(callback) {
+            request('/api/ro/my/affiliatepayments', {}, callback);
+        };
+
+        self.listReferralPayments = function(callback) {
+            request('/api/ro/my/referralpayments', {}, callback);
+        };
+
 }
 
 module.exports = coinspot;
