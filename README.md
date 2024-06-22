@@ -1,5 +1,9 @@
 Please see https://www.coinspot.com.au/api for documentation on the CoinSpot API.
 
+Updated coinspot-api SDK containing the missing endpoints.
+To use, replace your 'coinspot-api.js' file found inside of ./node_modules/coinspot-api/ 
+
+
 
 Example usage
 
